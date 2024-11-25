@@ -1,10 +1,14 @@
-const express = require('express');
-const userRouter = require("./routes/users/userRoutes.js");
-const postRouter = require('./routes/posts/postRoutes.js');
-const categoryRouter = require('./routes/categories/categoryRoutes.js');
-const commentRouter = require('./routes/comments/commentRoutes.js');
-require('dotenv').config();
-require("./config/dbConnect.js")
+import express from "express";
+import userRouter from "./routes/users/userRoutes.js";
+import postRouter from "./routes/posts/postRoutes.js";
+import categoryRouter from "./routes/categories/categoryRoutes.js";
+import commentRouter from "./routes/comments/commentRoutes.js";
+import dotdev from "dotenv"
+
+import dbConnect from "./config/dbConnect.js";
+
+dotdev.config()
+
 
 const app = express();
 
