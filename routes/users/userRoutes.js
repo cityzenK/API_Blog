@@ -1,75 +1,21 @@
-const express = require('express');
+import express from 'express';
+import { loggerMiddleware, headerMiddleware } from '../../middlewares/middle.js';
+import { deleteUserbyID, userProfile, logginUser, updateUserbyID, userController, userRegisterCtrl } from '../../controllers/users/userController.js';
 
 const userRouter = express.Router();
 
-userRouter.post("/register", async (req, res) => {
-  try {
-    res.json({
-      status: "success",
-      data: "user register",
-    });
-  } catch (error) {
-    res.json(error.message);
-  }
-});
+userRouter.use(loggerMiddleware, headerMiddleware)
 
-userRouter.post("/login", async (req, res) => {
-  try {
-    res.json({
-      status: "success",
-      data: "user login",
-    });
-  } catch (error) {
-    res.json(error.message);
-  }
-});
+userRouter.post("/register", userRegisterCtrl);
 
-userRouter.get("/", async (req, res) => {
-  try {
-    res.json({
-      status: "success",
-      data: "profile route",
-    })
-  } catch (error) {
-    res.json(error.message)
-  }
-});
+userRouter.post("/login", logginUser);
 
-userRouter.get("/profile/:id", async (req, res) => {
-  try {
-    const user = req.params;
-    res.json({
-      status: "success",
-      data: `profile of user ${user.id}`,
-    })
-  } catch (error) {
-    res.json(error.message)
-  }
-});
+userRouter.get("/", userController);
 
-userRouter.delete("/:id", async (req, res) => {
-  try {
-    const user = req.params
-    res.json({
-      status: "success",
-      data: `delete user profile ${user.id}`,
-    })
-  } catch (error) {
-    res.json(error.message)
-  }
-});
+userRouter.get("/profile/:id", userProfile);
 
+userRouter.delete("/:id", deleteUserbyID);
 
-userRouter.put("/:id", async (req, res) => {
-  try {
-    const user = req.params
-    res.json({
-      status: "success",
-      data: `update user profile ${user.id}`,
-    })
-  } catch (error) {
-    res.json(error.message)
-  }
-});
+userRouter.put("/:id", updateUserbyID);
 
-module.exports = userRouter;
+export default userRouter
