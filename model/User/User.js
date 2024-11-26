@@ -2,22 +2,22 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   firstname: {
-    type: string,
+    type: String,
     required: [true, "First name is required"],
   },
   lastname: {
-    type: string,
+    type: String,
     required: [true, "Last name is required"]
   },
   profilePhoto: {
-    type: string,
+    type: String,
   },
   email: {
-    type: string,
+    type: String,
     required: [true, "Email is required"]
   },
   password: {
-    type: string,
+    type: String,
     required: [true, "Last name is required"]
   },
   postCount: {
@@ -68,5 +68,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true,
 });
 
+const User = mongoose.model('User', userSchema);
 
-export const User = mongoose.model('User', userSchema);
+export default User;

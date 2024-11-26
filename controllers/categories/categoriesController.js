@@ -1,4 +1,4 @@
-export const createCategorie = async () => {
+export const createCategorie = async (req, res) => {
   try {
     res.json({
       status: "success",
